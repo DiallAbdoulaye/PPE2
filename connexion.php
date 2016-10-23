@@ -39,6 +39,8 @@ if (empty($_POST)){
 			
 		}
 		fclose($fic); // fermeture du fichier 
+		?>
+		<p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d\'accueil</p>
 
 
 
@@ -48,6 +50,6 @@ if (empty($_POST)){
 
 
 
-	?>
+	
 </body>
 </html>
