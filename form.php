@@ -66,6 +66,8 @@ else{
 
 
 ?>
+	<p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d\'accueil</p>
+
 
 </body>
 </html>
