@@ -1,11 +1,3 @@
-<?php
-
-if (empty($_POST)){
-	$_POST = print_r("");	// Si le formulaire n'est pas encore rempli envoi rien dans le tableau $_POST
-}
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,17 +20,24 @@ if (empty($_POST)){
 
 		</form>
 		<?php  
-		$fic = fopen('password.htaccess', 'r');  // Ouverture du fichier en lecteure seule
-		while (!feof($fic)) {					 // On parcour le fichier
-			$ligne = fgets($fic);
-			$datas = explode(';', $ligne);       // On sépare les différentes informations avec un explode qui va aller dans le tableau $datas
-			if (sha1($_POST['pwd']) == $datas[0] && $_POST['identifiant'] == $datas[1]) {   // si le mot de passe et le login sont pareils alors je suis connecté
+		$trouve=false;
+		if (!empty($_POST)) {
+			$fic = fopen('password.htaccess', 'r');  // Ouverture du fichier en lecteure seule
+			while (!feof($fic)) {					 // On parcour le fichier
+				$ligne = fgets($fic);
+				$datas = explode(';', $ligne);       // On sépare les différentes informations avec un explode qui va aller dans le tableau $datas
+				if (sha1($_POST['pwd']) == $datas[0] && $_POST['identifiant'] == $datas[1]) {   // si le mot de passe et le login sont pareils alors je suis 
+					$trouve=true;
+				}
+			}if($trouve) {
+				//connecté
 				echo "Vous êtes connectés";
-				
-			}
-			
+			}else{
+				echo "Il faut d'abord s'inscrire";
+			}	
+				fclose($fic); // fermeture du fichier 
 		}
-		fclose($fic); // fermeture du fichier 
+		
 		?>
 		<p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d\'accueil</p>
 
